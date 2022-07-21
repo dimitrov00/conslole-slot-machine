@@ -10,12 +10,12 @@ public class MoneyInsertedState : BaseState, ISlotMachineState
         _balance = amount;
     }
 
-    public void Bet(decimal stake)
+    public override void Bet(decimal stake)
     {
         ValidateGreaterThanZero(stake, "You cannot have 0 or negative stake");
         ValidateNotGreaterThan(stake, _balance, "You cannot have higher stake than your balance");
 
-        var slotMatrix = _game.SlotMatrix.Next();
+        var slotMatrix = _game!.SlotMatrix.Next();
         var profitProcessor = new ProfitProcessor();
         var winAmount = profitProcessor.Calculate(stake, slotMatrix);
         _balance = _balance - stake + winAmount;
@@ -24,16 +24,16 @@ public class MoneyInsertedState : BaseState, ISlotMachineState
         DisplayBalance();
     }
 
-    public decimal GetCurrentBalance() => _balance;
+    public override decimal GetCurrentBalance() => _balance;
 
-    public void InsertMoney(decimal amount)
+    public override void InsertMoney(decimal amount)
     {
         ValidateGreaterThanZero(amount, "You can only insert positive amount of money");
         _balance += amount;
         Console.WriteLine($"{amount} inserted");
     }
 
-    public void Withdraw(decimal amount)
+    public override void Withdraw(decimal amount)
     {
         ValidateGreaterThanZero(amount, "You can only withdraw positive amount of money");
         ValidateNotGreaterThan(amount, _balance, "You cannot withdraw more than your balance");

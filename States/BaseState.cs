@@ -19,7 +19,7 @@ public abstract class BaseState : ISlotMachineState
         _game = game;
     }
 
-    public decimal GetCurrentBalance() => _balance;
+    public virtual decimal GetCurrentBalance() => _balance;
     public virtual void InsertMoney(decimal amount) { }
     public virtual void Withdraw(decimal amount) { }
 

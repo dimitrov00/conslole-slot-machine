@@ -6,18 +6,18 @@ namespace SlotMachineProject.States
         {
         }
 
-        public void Bet(decimal stake)
+        public override void Bet(decimal stake)
         {
             Console.WriteLine($"You cannot place a bet");
         }
 
-        public decimal GetCurrentBalance() => 0;
-        public void InsertMoney(decimal amount)
+        public override decimal GetCurrentBalance() => 0;
+        public override void InsertMoney(decimal amount)
         {
             Console.WriteLine($"You have inserted {amount}");
         }
 
-        public void Withdraw(decimal amount)
+        public override void Withdraw(decimal amount)
         {
             Console.WriteLine($"You do not have money to withdraw");
         }

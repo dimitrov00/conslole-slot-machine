@@ -9,18 +9,12 @@ var symbols = new List<SlotSymbol>
     new SlotSymbol('*', 0m, 5, true)
 };
 
-var options = new List<string>
-{
-    "Insert money",
-    "Withdraw money",
-    "Bet",
-    "Display balance",
-    "Exit"
-};
-
 var slotMachine = new SlotMachine();
 var slotGame = new SlotGame("Fancy game name", 4, 3, symbols);
 slotMachine.SelectGame(slotGame);
+var optionProviderFactory = new SlotMachineOptionProviderFactory(slotMachine);
+var options = optionProviderFactory.AvailableOptions;
+
 while (true)
 {
     Console.WriteLine(string.Join(Environment.NewLine, options.Select((o, i) => $"{i}: {o}")));
@@ -35,7 +29,6 @@ while (true)
         Console.WriteLine("Invalid option");
         continue;
     }
-    var optionProviderFactory = new SlotMachineOptionProviderFactory(slotMachine);
     try
     {
         var provider = optionProviderFactory.GetOptionProvider(options[option]);

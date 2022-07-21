@@ -10,7 +10,7 @@ public class SlotMatrix
     private readonly int _reels;
     private readonly IEnumerable<SlotSymbol> _symbols;
 
-    public SlotSymbol[,]? Matrix { get; private set; }
+    public SlotSymbol[,] Matrix { get; private set; }
     public SlotMatrix(int rows, int reels, IEnumerable<SlotSymbol> symbols)
     {
         ValidateGreaterThanZero(rows, "Rows must be greater than 0");

@@ -1,9 +1,11 @@
+using static SlotMachineProject.Utils.Validations;
 namespace SlotMachineProject.Helpers;
 
 public class ProfitProcessor
 {
     public decimal Calculate(decimal stake, SlotSymbol[,] matrix)
     {
+        ValidateGreaterThanZero(stake, "Stake must be higher than 0");
         var coefficient = 0m;
 
         for (var rowIndex = 0; rowIndex < matrix.GetLength(0); rowIndex++)
@@ -21,7 +23,9 @@ public class ProfitProcessor
                 break;
             }
             if (winningSlots.Count >= 3)
+            {
                 coefficient += winningSlots.Sum(s => s.Coefficient);
+            }
         }
 
         return stake * coefficient;

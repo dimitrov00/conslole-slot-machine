@@ -1,3 +1,4 @@
+using static SlotMachineProject.Utils.Validations;
 namespace SlotMachineProject.Helpers;
 
 public class RandomSymbolGenerator
@@ -6,16 +7,8 @@ public class RandomSymbolGenerator
 
     public RandomSymbolGenerator(IEnumerable<SlotSymbol> symbols)
     {
-        ValidateSymbols(symbols);
+        ValidateNotNullOrEmpty(symbols, "Symbols are required in order to generate random");
         _symbols = symbols.OrderBy(s => s.Probability).ToList();
-    }
-
-    private static void ValidateSymbols(IEnumerable<SlotSymbol> symbols)
-    {
-        if (symbols == null || !symbols.Any())
-        {
-            throw new Exception("Symbols are required in order to generate random");
-        }
     }
 
     public SlotSymbol Generate()

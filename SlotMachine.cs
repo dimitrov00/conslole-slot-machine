@@ -45,6 +45,14 @@ public class SlotMachine : ISlotMachineState
         }
     }
 
-    public void Withdraw(decimal amount) => _state.Withdraw(amount);
+    public void Withdraw(decimal amount)
+    {
+        _state.Withdraw(amount);
+        if (_state is MoneyInsertedState && _state.GetCurrentBalance() <= 0)
+        {
+            _state = new MoneyNotInsertedState(_state.GetSelectedGame());
+        }
+    }
+
     public void DisplayMatrix() => _state.DisplayMatrix();
 }
