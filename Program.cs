@@ -19,18 +19,16 @@ while (true)
 {
     Console.WriteLine(string.Join(Environment.NewLine, options.Select((o, i) => $"{i}: {o}")));
     Console.Write("Choose an option: ");
-    if (!int.TryParse(Console.ReadLine(), out var option))
-    {
-        Console.WriteLine("Invalid option");
-        continue;
-    }
-    if (option < 0 || option > options.Count - 1)
-    {
-        Console.WriteLine("Invalid option");
-        continue;
-    }
     try
     {
+        if (!int.TryParse(Console.ReadLine(), out var option))
+        {
+            throw new ArgumentException("Invalid option");
+        }
+        if (option < 0 || option > options.Count - 1)
+        {
+            throw new ArgumentException("Invalid option");
+        }
         var provider = optionProviderFactory.GetOptionProvider(options[option]);
         provider.Execute();
     }
