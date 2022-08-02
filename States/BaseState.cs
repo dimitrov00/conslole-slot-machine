@@ -1,18 +1,17 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace SlotMachineProject.States;
 
 public abstract class BaseState : ISlotMachineState
 {
+    protected decimal Balance = 0;
+    protected SlotGame? Game;
+
     protected BaseState(SlotGame? game)
     {
         this.Game = game;
     }
 
-    protected decimal Balance = 0;
-    protected SlotGame? Game;
-
     public virtual void Bet(decimal stake) { }
+
     public virtual void SelectGame(SlotGame? game)
     {
         ArgumentNullException.ThrowIfNull(game);
@@ -20,10 +19,12 @@ public abstract class BaseState : ISlotMachineState
     }
 
     public virtual decimal GetCurrentBalance() => this.Balance;
+
     public virtual void InsertMoney(decimal amount) { }
     public virtual void Withdraw(decimal amount) { }
 
     public SlotGame? GetSelectedGame() => this.Game;
+
     public void DisplayBalance()
     {
         Console.WriteLine($"Current balance is: {this.Balance}");

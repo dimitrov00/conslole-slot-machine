@@ -11,10 +11,10 @@ public class SlotGame
 
         this.Name = name;
         this.Symbols = symbols.ToList();
-        this.SlotMatrix = new SlotMatrix(rows, reels, symbols);
+        this.SlotMatrix = new SlotMatrix(rows, reels, this.Symbols);
     }
 
-    public string Name { get; init; }
-    public IList<SlotSymbol> Symbols { get; init; }
-    public SlotMatrix SlotMatrix { get; init; }
+    public string Name { get; }
+    public IList<SlotSymbol> Symbols { get; }
+    public SlotMatrix SlotMatrix { get; }
 }
