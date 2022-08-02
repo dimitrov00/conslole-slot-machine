@@ -1,4 +1,5 @@
 namespace SlotMachineProject;
+
 public interface ISlotMachineState
 {
     void InsertMoney(decimal amount);

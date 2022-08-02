@@ -1,5 +1,4 @@
 using System.Collections.Immutable;
-using System.Collections.ObjectModel;
 
 namespace SlotMachineProject.Providers;
 
@@ -24,18 +23,12 @@ public class SlotMachineOptionProviderFactory
             .Cast<ISlotMachineOptionProvider>()
             .ToImmutableDictionary(k => k.OptionName, v => v);
 
-        this.AvailableOptions = _slotMachineOptionProviders.Keys.OrderBy(k => k).ToList();
+        AvailableOptions = _slotMachineOptionProviders.Keys.OrderBy(k => k).ToList();
     }
 
     public IReadOnlyList<string> AvailableOptions { get; }
 
-    public ISlotMachineOptionProvider GetOptionProvider(string optionName)
-    {
-        var provider = _slotMachineOptionProviders.GetValueOrDefault(optionName);
-        if (provider is null)
-        {
-            throw new ArgumentException("No such option provided");
-        }
-        return provider;
-    }
+    public ISlotMachineOptionProvider GetOptionProvider(string optionName) =>
+        _slotMachineOptionProviders.GetValueOrDefault(optionName)
+        ?? throw new ArgumentException("No such option provided");
 }

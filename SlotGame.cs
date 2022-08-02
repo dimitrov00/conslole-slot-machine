@@ -9,9 +9,9 @@ public class SlotGame
         ValidateNotNullOrEmpty(name, "Name should not be empty");
         ValidateNotNullOrEmpty(symbols, "Symbols are required in order to create game");
 
-        this.Name = name;
-        this.Symbols = symbols.ToList();
-        this.SlotMatrix = new SlotMatrix(rows, reels, this.Symbols);
+        Name = name;
+        Symbols = symbols.ToList();
+        SlotMatrix = new SlotMatrix(rows, reels, Symbols);
     }
 
     public string Name { get; }

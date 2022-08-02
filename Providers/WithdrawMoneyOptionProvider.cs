@@ -20,6 +20,7 @@ public class WithdrawMoneyOptionProvider : ISlotMachineOptionProvider
             Console.WriteLine("Invalid amount");
             return;
         }
+
         _slotMachine.Withdraw(amount);
     }
 }

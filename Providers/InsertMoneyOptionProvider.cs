@@ -20,6 +20,7 @@ public class InsertMoneyOptionProvider : ISlotMachineOptionProvider
             Console.WriteLine("Invalid amount");
             return;
         }
+
         _slotMachine.InsertMoney(amount);
     }
 }

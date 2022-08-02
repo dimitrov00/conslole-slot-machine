@@ -1,4 +1,5 @@
 using static SlotMachineProject.Utils.Validations;
+
 namespace SlotMachineProject.Helpers;
 
 public class ProfitProcessor
@@ -20,12 +21,11 @@ public class ProfitProcessor
                     winningSlots.Add(symbol);
                     continue;
                 }
+
                 break;
             }
-            if (winningSlots.Count >= 3)
-            {
-                coefficient += winningSlots.Sum(s => s.Coefficient);
-            }
+
+            if (winningSlots.Count >= 3) coefficient += winningSlots.Sum(s => s.Coefficient);
         }
 
         return stake * coefficient;

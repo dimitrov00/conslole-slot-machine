@@ -6,11 +6,10 @@ namespace SlotMachineProject;
 
 public class SlotMatrix
 {
-    private readonly int _rows;
+    private readonly RandomSymbolGenerator _randomSymbolGenerator;
     private readonly int _reels;
-    private readonly IEnumerable<SlotSymbol> _symbols;
+    private readonly int _rows;
 
-    public SlotSymbol[,] Matrix { get; private set; }
     public SlotMatrix(int rows, int reels, IEnumerable<SlotSymbol> symbols)
     {
         ValidateGreaterThanZero(rows, "Rows must be greater than 0");
@@ -19,36 +18,34 @@ public class SlotMatrix
 
         _rows = rows;
         _reels = reels;
-        _symbols = symbols;
+        _randomSymbolGenerator = new RandomSymbolGenerator(symbols);
+
         Matrix = new SlotSymbol[_rows, _reels];
         Next();
     }
 
+    public SlotSymbol[,] Matrix { get; }
+
     public SlotMatrix Next()
     {
-        var random = new RandomSymbolGenerator(_symbols);
-        for (var rowIndex = 0; rowIndex < _rows; rowIndex++)
-        {
-            for (var reelIndex = 0; reelIndex < _reels; reelIndex++)
-            {
-                Matrix[rowIndex, reelIndex] = random.Generate();
-            }
-        }
+        for (var row = 0; row < _rows; row++)
+            for (var reel = 0; reel < _reels; reel++)
+                Matrix[row, reel] = _randomSymbolGenerator.Generate();
         return this;
     }
 
     public static implicit operator SlotSymbol[,](SlotMatrix slotMatrix) => slotMatrix.Matrix;
+
     public override string ToString()
     {
         var sb = new StringBuilder();
-        for (var i = 0; i < Matrix.GetLength(0); i++)
+        for (var row = 0; row < Matrix.GetLength(0); row++)
         {
-            for (var j = 0; j < Matrix.GetLength(1); j++)
-            {
-                sb.Append($"| {Matrix[i, j].Symbol} |".PadRight(5));
-            }
+            for (var reel = 0; reel < Matrix.GetLength(1); reel++)
+                sb.Append($"| {Matrix[row, reel].Symbol} |".PadRight(5));
             sb.AppendLine();
         }
+
         return sb.ToString();
     }
 }

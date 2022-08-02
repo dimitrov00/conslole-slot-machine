@@ -9,6 +9,7 @@ public class DisplayBalanceOptionProvider : ISlotMachineOptionProvider
         ArgumentNullException.ThrowIfNull(slotMachine);
         _slotMachine = slotMachine;
     }
+
     public string OptionName { get; } = "Display balance";
 
     public void Execute() => _slotMachine.DisplayBalance();

@@ -9,7 +9,8 @@ public class DisplayMatrixOptionProvider : ISlotMachineOptionProvider
         ArgumentNullException.ThrowIfNull(slotMachine);
         _slotMachine = slotMachine;
     }
+
     public string OptionName { get; } = "Display matrix";
 
-    public void Execute() => this._slotMachine.DisplayMatrix();
+    public void Execute() => _slotMachine.DisplayMatrix();
 }

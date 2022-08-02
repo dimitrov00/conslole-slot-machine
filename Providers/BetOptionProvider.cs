@@ -20,6 +20,7 @@ public class BetOptionProvider : ISlotMachineOptionProvider
             Console.WriteLine("Invalid amount");
             return;
         }
+
         _slotMachine.Bet(amount);
     }
 }

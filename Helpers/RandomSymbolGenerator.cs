@@ -1,4 +1,5 @@
 using static SlotMachineProject.Utils.Validations;
+
 namespace SlotMachineProject.Helpers;
 
 public class RandomSymbolGenerator
@@ -19,10 +20,7 @@ public class RandomSymbolGenerator
         foreach (var symbol in _symbols)
         {
             cumulative += symbol.Probability;
-            if (random < cumulative)
-            {
-                return symbol;
-            }
+            if (random < cumulative) return symbol;
         }
 
         return _symbols[^1];
