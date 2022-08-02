@@ -23,7 +23,7 @@ public class SlotMachineOptionProviderFactory
             .Cast<ISlotMachineOptionProvider>()
             .ToImmutableDictionary(k => k.OptionName, v => v);
 
-        AvailableOptions = _slotMachineOptionProviders.Keys.OrderBy(k => k).ToList();
+        AvailableOptions = _slotMachineOptionProviders.Keys.OrderBy(k => k).ToImmutableList();
     }
 
     public IReadOnlyList<string> AvailableOptions { get; }

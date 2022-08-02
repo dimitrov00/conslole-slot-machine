@@ -9,6 +9,7 @@ var symbols = new List<SlotSymbol>
 var slotMachine = new SlotMachine();
 var slotGame = new SlotGame("Fancy game name", 4, 3, symbols);
 slotMachine.SelectGame(slotGame);
+
 var optionProviderFactory = new SlotMachineOptionProviderFactory(slotMachine);
 var options = optionProviderFactory.AvailableOptions;
 
