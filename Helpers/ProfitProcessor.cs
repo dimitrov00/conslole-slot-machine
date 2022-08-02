@@ -3,7 +3,7 @@ namespace SlotMachineProject.Helpers;
 
 public class ProfitProcessor
 {
-    public decimal Calculate(decimal stake, SlotSymbol[,] matrix)
+    public static decimal Calculate(decimal stake, SlotSymbol[,] matrix)
     {
         ValidateGreaterThanZero(stake, "Stake must be higher than 0");
         var coefficient = 0m;

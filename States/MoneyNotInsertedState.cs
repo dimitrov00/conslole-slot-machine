@@ -1,6 +1,6 @@
 namespace SlotMachineProject.States
 {
-    public class MoneyNotInsertedState : BaseState, ISlotMachineState
+    public class MoneyNotInsertedState : BaseState
     {
         public MoneyNotInsertedState(SlotGame? game) : base(game)
         {

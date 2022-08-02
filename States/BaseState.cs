@@ -4,39 +4,39 @@ namespace SlotMachineProject.States;
 
 public abstract class BaseState : ISlotMachineState
 {
-    public BaseState(SlotGame? game)
+    protected BaseState(SlotGame? game)
     {
-        _game = game;
+        this.Game = game;
     }
 
-    protected decimal _balance = 0;
-    public SlotGame? _game;
+    protected decimal Balance = 0;
+    protected SlotGame? Game;
 
     public virtual void Bet(decimal stake) { }
     public virtual void SelectGame(SlotGame? game)
     {
         ArgumentNullException.ThrowIfNull(game);
-        _game = game;
+        this.Game = game;
     }
 
-    public virtual decimal GetCurrentBalance() => _balance;
+    public virtual decimal GetCurrentBalance() => this.Balance;
     public virtual void InsertMoney(decimal amount) { }
     public virtual void Withdraw(decimal amount) { }
 
-    public SlotGame? GetSelectedGame() => _game;
+    public SlotGame? GetSelectedGame() => this.Game;
     public void DisplayBalance()
     {
-        Console.WriteLine($"Current balance is: {_balance}");
+        Console.WriteLine($"Current balance is: {this.Balance}");
     }
 
     public void DisplayMatrix()
     {
-        if (_game is null)
+        if (this.Game is null)
         {
             Console.WriteLine("Select game first");
             return;
         }
 
-        Console.WriteLine(_game.SlotMatrix.ToString());
+        Console.WriteLine(this.Game.SlotMatrix.ToString());
     }
 }

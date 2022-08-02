@@ -14,11 +14,10 @@ public class RandomSymbolGenerator
     public SlotSymbol Generate()
     {
         var random = new Random().Next(0, 100);
-        var cumulative = 0.0;
+        var cumulative = 0d;
 
-        for (var i = 0; i < _symbols.Count; i++)
+        foreach (var symbol in _symbols)
         {
-            var symbol = _symbols[i];
             cumulative += symbol.Probability;
             if (random < cumulative)
             {
@@ -26,6 +25,6 @@ public class RandomSymbolGenerator
             }
         }
 
-        return _symbols[_symbols.Count - 1];
+        return _symbols[^1];
     }
 }

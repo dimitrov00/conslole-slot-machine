@@ -3,13 +3,13 @@ using SlotMachineProject.Providers;
 
 var symbols = new List<SlotSymbol>
 {
-    new SlotSymbol('A', 0.4m, 45, false),
-    new SlotSymbol('B', 0.6m, 35, false),
-    new SlotSymbol('P', 0.8m, 15, false),
-    new SlotSymbol('*', 0m, 5, true)
+    new('A', 0.4m, 45, false),
+    new('B', 0.6m, 35, false),
+    new('P', 0.8m, 15, false),
+    new('*', 0m, 5, true)
 };
 
-var slotMachine = new SlotMachine();
+var slotMachine = new SlotMachineProject.SlotMachine();
 var slotGame = new SlotGame("Fancy game name", 4, 3, symbols);
 slotMachine.SelectGame(slotGame);
 var optionProviderFactory = new SlotMachineOptionProviderFactory(slotMachine);
@@ -17,7 +17,7 @@ var options = optionProviderFactory.AvailableOptions;
 
 while (true)
 {
-    Console.WriteLine(string.Join(Environment.NewLine, options.Select((o, i) => $"{i}: {o}")));
+    Console.WriteLine(string.Join(Environment.NewLine, options.Select((option, index) => $"{index}: {option}")));
     Console.Write("Choose an option: ");
     try
     {

@@ -1,5 +1,3 @@
-using SlotMachineProject.States;
-
 namespace SlotMachineProject.Providers;
 
 public class BetOptionProvider : ISlotMachineOptionProvider
