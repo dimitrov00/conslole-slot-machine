@@ -21,7 +21,8 @@ while (true)
     Console.Write("Choose an option: ");
     try
     {
-        if (!int.TryParse(Console.ReadLine(), out var option)) {
+        if (!int.TryParse(Console.ReadLine(), out var option))
+        {
             throw new ArgumentException("Invalid option");
         }
         if (option < 0 || option > options.Count - 1)
