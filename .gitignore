@@ -409,3 +409,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/.idea/.idea.SlotMachine.dir/.idea/encodings.xml
+/.idea/.idea.SlotMachine.dir/.idea/indexLayout.xml
+/.idea/.idea.SlotMachine.dir/.idea/vcs.xml
