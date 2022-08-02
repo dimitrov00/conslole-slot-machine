@@ -13,7 +13,7 @@ public class SlotGame
         ValidateNotNullOrEmpty(symbols, "Symbols are required in order to create game");
 
         this.Name = name;
-        this.Symbols = symbols.ToList();
+                this.Symbols = symbols.ToList();
         this.SlotMatrix = new SlotMatrix(rows, reels, symbols);
     }
 }
